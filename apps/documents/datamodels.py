@@ -160,6 +160,10 @@ class JSONCollectionSourceConfig(pydantic.BaseModel):
         return str(self.json_url)
 
 
+class GoogleDocsSourceConfig(pydantic.BaseModel):
+    document_url: str = pydantic.Field(description="Google Docs document URL")
+
+
 class DocumentSourceConfig(pydantic.BaseModel):
     github: GitHubSourceConfig | None = pydantic.Field(default=None, description="GitHub source configuration")
     confluence: ConfluenceSourceConfig | None = pydantic.Field(
@@ -167,4 +171,7 @@ class DocumentSourceConfig(pydantic.BaseModel):
     )
     json_collection: JSONCollectionSourceConfig | None = pydantic.Field(
         default=None, description="JSON collection source configuration"
+    )
+    google_docs: GoogleDocsSourceConfig | None = pydantic.Field(
+        default=None, description="Google Docs source configuration"
     )
